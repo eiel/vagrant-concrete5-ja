@@ -30,13 +30,16 @@ C5_CLI_URL          = 'https://raw2.github.com/concrete5/concrete5/master/cli/in
 
 if VM_BOX === "precise64"
     PHP_PACKAGES = %w{ php5-cgi php5 php5-dev php5-cli php-pear }
+    VM_BOX_URL = "http://files.vagrantup.com/precise64.box"
 elsif VM_BOX === "chef/centos-6.5"
     PHP_PACKAGES = %w{ php php-devel php-cli php-pear php-mbstring }
+    VM_BOX_URL = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20131103.box"
 end
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = VM_BOX
+  config.vm.box_url = VM_BOX_URL
 
   config.vm.hostname = C5_HOSTNAME
   config.vm.network :private_network, ip: C5_IP
@@ -47,7 +50,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.hostsupdater.remove_on_suspend = true
   end
 
+  # vagrant plugin install vagrant-omnibus
   config.omnibus.chef_version = :latest
+  # vagrant plugin install vagrant-berkshefl
+  config.berkshelf.enabled = true
 
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe "concrete5"

@@ -11,13 +11,11 @@
 3. Chef Development Kit をインストール
  * [http://www.getchef.com/downloads/chef-dk/mac/](http://www.getchef.com/downloads/chef-dk/mac/)
 4. 下記コマンドをいれて vagrant pluginsをコマンドラインからインストール
- * `vagrant plugin install vagrant-omnibus`
+ * `vagrant plugin install vagrant-omnibus vagrant-berkshelf`
 5. このレポジトリをローカルにクローン
  * `git clone https://github.com/katzueno/vagrant-concrete5-ja.git`
 6. ディレクトリーに移動
  * `cd vagrant-concrete5-ja`
-7. cookbooks をインストール
- * `berks vendor cookbooks`
 8. Vagrant 環境を起動.
  * `vagrant up`
 9. アクセス先は [http://192.168.33.35/](http://192.168.33.35/)
